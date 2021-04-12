@@ -1,0 +1,23 @@
+{
+  "name": "e-health_g2b_project",
+  "version": "0.0.1",
+  "description": "E-Health: Government to Buisness Services",
+  "main": "server",
+  "scripts": {
+    "start": "NODE_ENV=PRODUCTION node server",
+    "dev": "nodemon server"
+  },
+  "author": "mishaown",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3",
+    "morgan": "^1.10.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
