@@ -8,6 +8,8 @@ dotenv.config();
 
 // LOAD MONGOOSE SCHEMA
 const PEOPLE = require('./models/Public_INFO');
+const MEDICAL_PROFILE = require('./models/Public_Medical_Profile');
+
 
 // CONNECT TO DATABASE
 mongoose.connect(process.env.MONGODB_URI_PROJECT,
@@ -29,7 +31,7 @@ const importPeopleDATA = async () => {
         process.exit();
 
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
     }
 }
 
@@ -37,8 +39,9 @@ const importPeopleDATA = async () => {
 const deletePeopleDATA = async () => {
     try {
         await PEOPLE.deleteMany();
+        await MEDICAL_PROFILE.deleteMany();
 
-        console.log('PEOPLE DATA DESTROYED...'.red.inverse);
+        console.log('PEOPLE DATA & MEDICAL PROFILE DESTROYED...'.red.inverse);
         process.exit();
 
     } catch (error) {
@@ -46,8 +49,44 @@ const deletePeopleDATA = async () => {
     }
 }
 
+// create medical profile
+const createMedicalProfile = async () => {
+    try {
+        const documents = await PEOPLE.find();
+
+        if (documents.length === 0 ) {
+            console.log('No Data Found!!!'.red);
+            process.exit();
+        }
+
+        let _ids = [];
+
+        documents.forEach( item => {
+            _ids.push({people_id: item._id})
+        })
+
+        const people = await MEDICAL_PROFILE.insertMany(_ids);
+        
+        if (!people) {
+            console.log('Could not create medical profile!'.red);
+            process.exit();
+        }
+
+        console.log(`${people.length} Medical Profiles Created!`.green.inverse);
+        process.exit();
+    
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+// COMMANDS
 if (process.argv[2] === '-i.people') {
     importPeopleDATA();
-} else if (process.argv[2] === '-d.people') {
+} 
+if (process.argv[2] === '-d.people') {
     deletePeopleDATA();
+} 
+if (process.argv[2] === '-c.mp') {
+    createMedicalProfile();
 }
