@@ -27,7 +27,7 @@ const errorHandler = (err, req, res, next) => {
 
     // MONGOOSE TYPE ERROR
     if( err.name === 'TypeError') {
-        const message = Object.values(err.errors).map(val => val.message);
+        const message = error.message;
         error = new ErrorResponse(message, 400);
     }
 

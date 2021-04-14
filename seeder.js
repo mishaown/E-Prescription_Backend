@@ -52,6 +52,9 @@ const deletePeopleDATA = async () => {
 // create medical profile
 const createMedicalProfile = async () => {
     try {
+        let _ids = [];
+
+        // Getting All People Documents
         const documents = await PEOPLE.find();
 
         if (documents.length === 0 ) {
@@ -59,14 +62,13 @@ const createMedicalProfile = async () => {
             process.exit();
         }
 
-        let _ids = [];
-
         documents.forEach( item => {
-            _ids.push({people_id: item._id})
+            _ids.push({peopleID: item._id})
         })
 
+        // Creating Medical Profile using PeopleID 
         const people = await MEDICAL_PROFILE.insertMany(_ids);
-        
+
         if (!people) {
             console.log('Could not create medical profile!'.red);
             process.exit();

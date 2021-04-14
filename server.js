@@ -26,9 +26,11 @@ if (process.env.NODE_ENV === 'DEVELOPMENT') {
 
 // ROUTER FILES
 const peoples = require('./routes/People');
+const doctors = require('./routes/Doctor');
 
 // MOUNT ROUTERS
 app.use('/api/0/people', peoples);
+app.use('/api/0/doc', doctors);
 
 // ----------------------------------------- 
 // -----------------------------------------

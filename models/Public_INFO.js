@@ -1,12 +1,6 @@
-const mongoose = require('mongoose');
-const uuidv1 = require('uuid').v1;
+const mongoose = require('mongoose'); 
 
 const PEOPLE = new mongoose.Schema({
-    ID: {
-        type: String,
-        required: ['ID could not be auto generated!!!', true],
-        unique: ['ID is duplicate, Please try again', true]
-    },
     name: {
         last_name: {
             type: String,
@@ -26,7 +20,7 @@ const PEOPLE = new mongoose.Schema({
         required: ['Birthdate is missing', true]
     },
     gender: {
-        type: [String],
+        type: String,
         required: ['Gender required', true],
         enum: ['male', 'female', 'other']
     },
@@ -42,14 +36,16 @@ const PEOPLE = new mongoose.Schema({
     family_members: [{
         unique_ID: String,
         relationship: String
-    }]
+    }],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
     
 })
 
-PEOPLE.pre('save', function(next){
-    // CREATING UNIQUIE ID USING TIMESTAMP
-    this.ID = uuidv1();
-    next();
-})
+// PEOPLE.pre('save', function(next){
+//     next();
+// })
 
 module.exports = mongoose.model('PEOPLE', PEOPLE);
