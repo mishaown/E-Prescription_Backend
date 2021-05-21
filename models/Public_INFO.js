@@ -14,7 +14,7 @@ const PEOPLE = new mongoose.Schema({
             trim: true,
             maxlength: [35, 'Name can not be more than 35 characters']
         }
-    },
+    }, 
     birthdate: {
         type: Date,
         required: ['Birthdate is missing', true]
@@ -37,6 +37,10 @@ const PEOPLE = new mongoose.Schema({
         unique_ID: String,
         relationship: String
     }],
+    nid: {
+        type: String,
+        maxlength: [10, 'NID number is not valid']
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -44,8 +48,5 @@ const PEOPLE = new mongoose.Schema({
     
 })
 
-// PEOPLE.pre('save', function(next){
-//     next();
-// })
 
 module.exports = mongoose.model('PEOPLE', PEOPLE);

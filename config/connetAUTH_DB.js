@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const connectDB = async () => {
+const connectAUTH_DB = async () => {
     
-    const conn = await mongoose.connect(process.env.MONGODB_URI_DATA,
+    const conn = await mongoose.connect(process.env.MONGODB_URI_AUTH,
         {
             useCreateIndex: true,
             useNewUrlParser: true,
@@ -12,4 +12,4 @@ const connectDB = async () => {
     console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.inverse);
 }
 
-module.exports = connectDB;
+module.exports = connectAUTH_DB;

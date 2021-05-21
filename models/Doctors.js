@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const DoctorSchema = new mongoose.Schema({
     peopleID: {
         type: String,
-        required: ['ID Required!!!', true]
+        required: ['ID Required!!!', true],
+        unique: ['ID already exists!!!',true]
     },
     education: [{
         degree: String,
@@ -11,7 +12,12 @@ const DoctorSchema = new mongoose.Schema({
         graduationYear: Date,
         professionalStatement: String
     }],
-    doctorID: Number,
+    doctorID: {
+        type: String,
+        required: ['Doctor ID Required!!!', true],
+        unique: ['DOCTOR ID already exists!!!',true]
+    },
+    feildOfExpertise: [String],
     practicingStatus: {
         type: String,
         enum: ['Private', 'Public', 'Solo', 'Suspend', 'Revoked'],
@@ -22,6 +28,11 @@ const DoctorSchema = new mongoose.Schema({
         hospitalName: String,
         startDate: Date,
         endDate: Date
+    }],
+    appointments: [{
+        id: String,
+        peopleID: String,
+        timestamp: Date
     }]
 
 })

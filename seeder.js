@@ -8,11 +8,12 @@ dotenv.config();
 
 // LOAD MONGOOSE SCHEMA
 const PEOPLE = require('./models/Public_INFO');
+const DOCTORS = require('./models/Doctors');
 const MEDICAL_PROFILE = require('./models/Public_Medical_Profile');
 
 
 // CONNECT TO DATABASE
-mongoose.connect(process.env.MONGODB_URI_PROJECT,
+mongoose.connect(process.env.MONGODB_URI_DATA,
     {
         useCreateIndex: true,
         useNewUrlParser: true,
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGODB_URI_PROJECT,
 
 // read json files
 const people = JSON.parse(fs.readFileSync(`${__dirname}/_data/People.json`, 'utf-8'));
+const doctors = JSON.parse(fs.readFileSync(`${__dirname}/_data/Doctors.json`, 'utf-8'));
 
 // import into database
 const importPeopleDATA = async () => {
@@ -69,11 +71,6 @@ const createMedicalProfile = async () => {
         // Creating Medical Profile using PeopleID 
         const people = await MEDICAL_PROFILE.insertMany(_ids);
 
-        if (!people) {
-            console.log('Could not create medical profile!'.red);
-            process.exit();
-        }
-
         console.log(`${people.length} Medical Profiles Created!`.green.inverse);
         process.exit();
     
@@ -82,13 +79,45 @@ const createMedicalProfile = async () => {
     }
 }
 
+// Import Doctor's Data
+const importDoctorDATA = async () => {
+    try {
+        await DOCTORS.create(doctors);
+        console.log(`${doctors.length} DOCTORS DATA IMPORTED...`.green.inverse);
+        process.exit();
+
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+// Destroy Doctor's Data
+const deleteDoctorDATA = async () => {
+    try {
+        await DOCTORS.deleteMany();
+        console.log('DOCTORS PROFILE DESTROYED...'.red.inverse);
+        process.exit();
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 // COMMANDS
-if (process.argv[2] === '-i.people') {
+if (process.argv[2] === 'ins_PEO') {
     importPeopleDATA();
 } 
-if (process.argv[2] === '-d.people') {
+if (process.argv[2] === 'des_PEO') {
     deletePeopleDATA();
 } 
-if (process.argv[2] === '-c.mp') {
+if (process.argv[2] === 'cre_MED') {
     createMedicalProfile();
+}
+if (process.argv[2] === 'ins_DOC') {
+    importDoctorDATA();
+}
+
+if (process.argv[2] === 'des_DOC') {
+    deleteDoctorDATA();
 }

@@ -1,5 +1,6 @@
 const ErrorResponse = require('../utils/errorResponse');
 const medicalProfileSchema =  require('../models/Public_Medical_Profile');
+const doctorSchema = require('../models/Doctors');
 const asyncHandler = require('../middleware/async');
 
 //@desc     GET Appointments of doctors by people id
@@ -29,6 +30,8 @@ exports.doctorAppointment = asyncHandler( async (req, res, next) => {
     const peopleID = req.params.id;
  
     const data = await medicalProfileSchema.findOneAndUpdate({peopleID}, { $push: {appointments: _data}}, {new: true, runValidators: true})
+
+    console.log(data._id);
      
     if (!data) {
         return next(
