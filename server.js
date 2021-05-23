@@ -38,6 +38,7 @@ const limiter = rateLimit({
   });
 
 app.use(limiter);
+app.use(express.static('Public')); 
 
 
 //DEV LOGGING MIDDLEWARE
