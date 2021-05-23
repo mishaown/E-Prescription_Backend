@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const colors = require('colors');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/connectDB');
-const connectAUTH_DB = require('./config/connetAUTH_DB');
+var cookieParser = require('cookie-parser')
 
 //LOAD .ENV FILES
 // ----------------------------------------- 
@@ -13,16 +13,16 @@ dotenv.config();
 
 const app = express();
 
-//BODY PARSER
+//PARSER
 // ----------------------------------------- 
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 
 
-//CONNECT TO DATABASES
+//CONNECT TO DATABASE
 // ----------------------------------------- 
 connectDB();
-// connectAUTH_DB();
 
 //DEV LOGGING MIDDLEWARE
 // ----------------------------------------- 

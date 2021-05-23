@@ -40,7 +40,7 @@ exports.getAllPeople = asyncHandler( async (req, res, next) => {
 })
 
 //@desc     GET A SINGLE PEOPLE'S DATA
-//@router   GET /api/0/people/:id
+//@router   GET /api/0/people/get/:id
 
 exports.getPeople = asyncHandler( async (req, res, next) => {
 

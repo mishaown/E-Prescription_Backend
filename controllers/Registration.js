@@ -55,5 +55,5 @@ exports.registerUser = asyncHandler( async (req, res, next) => {
         )
     }
 
-    res.status(200).json({success: true, user})
+    res.status(200).json({success: true, token})
 })
