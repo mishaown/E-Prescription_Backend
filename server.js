@@ -5,24 +5,40 @@ const morgan = require('morgan');
 const colors = require('colors');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/connectDB');
-var cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
+const mongoSanitizer = require('express-mongo-sanitize');
+const helmet = require('helmet');
+const XSS = require('xss-clean');
+const rateLimit = require("express-rate-limit");
+const hpp = require('hpp');
 
 //LOAD .ENV FILES
 // ----------------------------------------- 
 dotenv.config();
 
+//CONNECT TO DATABASE
+// ----------------------------------------- 
+connectDB();
+
 const app = express();
 
-//PARSER
+//MIDDLEWARE
 // ----------------------------------------- 
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
+app.use(mongoSanitizer());
+app.use(helmet());
+app.use(XSS());
+app.use(hpp());
 
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 50 // limit each IP to 100 requests per windowMs
+  });
 
-//CONNECT TO DATABASE
-// ----------------------------------------- 
-connectDB();
+app.use(limiter);
+
 
 //DEV LOGGING MIDDLEWARE
 // ----------------------------------------- 

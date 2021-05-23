@@ -1,7 +1,6 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const LoginSchema = require('../models/LoginSchema');
-const bcrypt = require('bcryptjs');
 
 //@desc     POST to register a user
 //@router   POST /api/0/people/login
