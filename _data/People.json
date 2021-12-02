@@ -1,0 +1,76 @@
+[
+    {
+        "name.last_name" : "Islam",
+        "name.first_name": "MD Minhazul",
+        "birthdate": "1998-04-06",
+        "gender": "male",
+        "address.house": "Surjo Dighol Bari",
+        "address.street" : "01, Ambari Road",
+        "address.thana" : "Kurigram Sadar",
+        "address.post_office": "Kurigram",
+        "address.zilla": "Kurigram",
+        "address.division": "Rangpur",
+        "address.zipcode": "5600",
+        "nid": "9154634162"
+
+    },    {
+        "name.last_name" : "Rahman",
+        "name.first_name": "Sanjida",
+        "birthdate": "2006-12-06",
+        "gender": "female",
+        "address.house": "Surjo Dighol Bari",
+        "address.street" : "01, Ambari Road",
+        "address.thana" : "Kurigram Sadar",
+        "address.post_office": "Kurigram",
+        "address.zilla": "Kurigram",
+        "address.division": "Rangpur",
+        "address.zipcode": "5600",
+        "nid": "9154634163"
+
+    },    
+    {
+        "name.last_name" : "Rahman",
+        "name.first_name": "MD Mahfuzar",
+        "birthdate": "1970-05-10",
+        "gender": "male",
+        "address.house": "Surjo Dighol Bari",
+        "address.street" : "01, Ambari Road",
+        "address.thana" : "Kurigram Sadar",
+        "address.post_office": "Kurigram",
+        "address.zilla": "Kurigram",
+        "address.division": "Rangpur",
+        "address.zipcode": "5600",
+        "nid": "9154634164"
+
+    },    
+    {
+        "name.last_name" : "Parvin",
+        "name.first_name": "MST Sultana",
+        "birthdate": "1980-10-06",
+        "gender": "female",
+        "address.house": "Surjo Dighol Bari",
+        "address.street" : "01, Ambari Road",
+        "address.thana" : "Kurigram Sadar",
+        "address.post_office": "Kurigram",
+        "address.zilla": "Kurigram",
+        "address.division": "Rangpur",
+        "address.zipcode": "5600",
+        "nid": "9154634165"
+
+    },    
+    {
+        "name.last_name" : "Bewa",
+        "name.first_name": "MST Sajimon",
+        "birthdate": "1940-12-09",
+        "gender": "female",
+        "address.house": "Surjo Dighol Bari",
+        "address.street" : "01, Ambari Road",
+        "address.thana" : "Kurigram Sadar",
+        "address.post_office": "Kurigram",
+        "address.zilla": "Kurigram",
+        "address.division": "Rangpur",
+        "address.zipcode": "5600",
+        "nid": "9154634166"
+
+    }
+]
